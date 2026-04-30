@@ -1,0 +1,53 @@
+server:
+  port: 8092
+
+spring:
+  datasource:
+    url: ${MYSQL_URL:jdbc:mysql://localhost:3306/customer_agent?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai}
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      database: ${REDIS_DATABASE:0}
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+
+langchain:
+  llm:
+    base-url: ${LLM_BASE_URL:https://api.moonshot.cn/v1}
+    api-key: ${LLM_API_KEY:}
+    model-name: ${LLM_MODEL:moonshot-v1-32k}
+    embedding-model-name: ${LLM_EMBEDDING_MODEL:text-embedding-v1}
+    temperature: 0.2
+    max-tokens: 4096
+
+app:
+  memory:
+    short-ttl-seconds: ${APP_SHORT_MEMORY_TTL_SECONDS:86400}
+    event-ttl-seconds: ${APP_EVENT_TTL_SECONDS:86400}
+    long-top-k: ${APP_LONG_MEMORY_TOP_K:5}
+  elasticsearch:
+    host: ${ES_HOST:http://localhost:9200}
+    username: ${ES_USERNAME:}
+    password: ${ES_PASSWORD:}
+    index-name: ${ES_INDEX:customer_service_agent}
+    embedding-dimension: ${ES_EMBEDDING_DIMENSION:1536}
+    top-k: ${ES_TOP_K:5}
+    vector-min-score: ${ES_VECTOR_MIN_SCORE:0.65}
+
+logging:
+  level:
+    com.customer.agent: INFO

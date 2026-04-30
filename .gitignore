@@ -1,0 +1,23 @@
+# Maven build output
+target/
+
+# Local Maven cache
+.m2-cache/
+.m2/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env / local config
+.env
+application-local.yml
+application-dev.yml
